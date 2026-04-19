@@ -14,4 +14,8 @@ class Geographic extends Model
     protected function province() {
         return $this->belongsTo(Province::class);
     }
+
+    public function barangays() {
+        return $this->hasMany(Barangay::class);
+    }
 }

@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Resident::class);
     }
+
+    public function admin()
+    {
+        return $this->hasMany(Admin::class);
+    }
 }

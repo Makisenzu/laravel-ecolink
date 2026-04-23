@@ -9,4 +9,9 @@ class RedeemableCategory extends Model
     protected $fillable = [
         'category_name'
     ];
+    
+    public function redeemableItems()
+    {
+        return $this->hasMany(Redeemable::class);
+    }
 }

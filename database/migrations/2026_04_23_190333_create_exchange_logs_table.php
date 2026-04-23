@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('exchange_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('resident_id')->constrained('residents')->cascadeOnDelete();
-            $table->foreignId('waste_items_id')->constrained('waste_items')->cascadeOnDelete();
+            $table->foreignId('waste_item_id')->constrained('waste_items')->cascadeOnDelete();
             $table->foreignId('admin_id')->constrained('admins')->cascadeOnDelete();
             $table->double('quantity', 15, 2);
             $table->double('points_earned', 15, 2);

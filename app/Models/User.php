@@ -39,7 +39,7 @@ class User extends Authenticatable
         ];
     }
 
-    protected function role() {
+    public function role() {
         return $this->belongsTo(Role::class);
     }
 
@@ -56,5 +56,26 @@ class User extends Authenticatable
     public function admin()
     {
         return $this->hasMany(Admin::class);
+    }
+
+    public function hasRole(string|array $roles): bool
+    {
+        $roleNames = is_array($roles) ? $roles : [$roles];
+        $userRole = $this->role?->role_name;
+
+        return $userRole !== null && in_array($userRole, $roleNames, true);
+    }
+
+    public function hasAnyRole(array $roles): bool
+    {
+        return $this->hasRole($roles);
+    }
+
+    public function hasPermission(string $permission): bool
+    {
+        return $this->role?->permissions()
+            ->where('slug', $permission)
+            ->orWhere('name', $permission)
+            ->exists();
     }
 }

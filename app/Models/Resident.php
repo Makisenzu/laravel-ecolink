@@ -20,4 +20,8 @@ class Resident extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function redemptionHistories()
+    {
+        return $this->hasMany(RedemptionHistory::class);
+    }
 }

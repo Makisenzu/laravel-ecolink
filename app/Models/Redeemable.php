@@ -19,4 +19,8 @@ class Redeemable extends Model
     {
         return $this->belongsTo(RedeemableCategory::class);
     }
+    public function redemptionHistories()
+    {
+        return $this->hasMany(RedemptionHistory::class);
+    }
 }

@@ -22,4 +22,8 @@ class Schedule extends Model
     {
         return $this->belongsTo(Driver::class);
     }
+    public function collectionQueues()
+    {
+        return $this->hasMany(CollectionQueue::class);
+    }
 }

@@ -19,4 +19,9 @@ class Site extends Model
     {
         return $this->belongsTo(Purok::class);
     }
+
+    public function collectionQueues()
+    {
+        return $this->hasMany(CollectionQueue::class);
+    }
 }

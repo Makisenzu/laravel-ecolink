@@ -26,4 +26,9 @@ class Schedule extends Model
     {
         return $this->hasMany(CollectionQueue::class);
     }
+
+    public function collectionReports()
+    {
+        return $this->hasMany(CollectionReport::class);
+    }
 }

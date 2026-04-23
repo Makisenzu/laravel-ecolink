@@ -21,4 +21,8 @@ class CollectionReport extends Model
     {
         return $this->belongsTo(WasteCategory::class);
     }
+    public function media()
+    {
+        return $this->hasMany(CollectionReportMedia::class);
+    }
 }

@@ -14,4 +14,9 @@ class Purok extends Model
     protected function barangay() {
         return $this->belongsTo(Barangay::class);
     }
+
+    public function sites()
+    {
+        return $this->hasMany(Site::class);
+    }
 }

@@ -18,4 +18,8 @@ class Barangay extends Model
     public function puroks() {
         return $this->hasMany(Purok::class);
     }
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }

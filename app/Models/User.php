@@ -2,23 +2,23 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
+
     protected $fillable = [
-        'role_id',
         'firstname',
         'middlename',
         'lastname',
         'username',
         'email',
-        'password'
+        'password',
     ];
 
     protected $hidden = [
@@ -39,10 +39,6 @@ class User extends Authenticatable
         ];
     }
 
-    public function role() {
-        return $this->belongsTo(Role::class);
-    }
-
     public function driver()
     {
         return $this->hasMany(Driver::class);
@@ -58,24 +54,29 @@ class User extends Authenticatable
         return $this->hasMany(Admin::class);
     }
 
-    public function hasRole(string|array $roles): bool
+    /**
+     * The roles that belong to the user.
+     */
+    public function roles()
     {
-        $roleNames = is_array($roles) ? $roles : [$roles];
-        $userRole = $this->role?->role_name;
+        return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id')
+            ->withPivot('assigned_at', 'assigned_by');
+    }
 
-        return $userRole !== null && in_array($userRole, $roleNames, true);
+    public function hasRole(string $role): bool
+    {
+        return $this->roles()->where('slug', $role)->exists();
     }
 
     public function hasAnyRole(array $roles): bool
     {
-        return $this->hasRole($roles);
+        return $this->roles()->whereIn('slug', $roles)->exists();
     }
 
     public function hasPermission(string $permission): bool
     {
-        return $this->role?->permissions()
-            ->where('slug', $permission)
-            ->orWhere('name', $permission)
+        return $this->roles()
+            ->whereHas('permissions', fn ($query) => $query->where('slug', $permission))
             ->exists();
     }
 }

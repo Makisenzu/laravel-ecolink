@@ -16,4 +16,9 @@ class Admin extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function exchangeLogs()
+    {
+        return $this->hasMany(ExchangeLog::class);
+    }
 }

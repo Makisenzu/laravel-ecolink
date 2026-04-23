@@ -24,4 +24,9 @@ class Resident extends Model
     {
         return $this->hasMany(RedemptionHistory::class);
     }
+
+    public function exchangeLogs()
+    {
+        return $this->hasMany(ExchangeLog::class);
+    }
 }

@@ -17,4 +17,9 @@ class WasteItem extends Model
     {
         return $this->belongsTo(WasteCategory::class);
     }
+
+    public function exchangeLogs()
+    {
+        return $this->hasMany(ExchangeLog::class);
+    }
 }

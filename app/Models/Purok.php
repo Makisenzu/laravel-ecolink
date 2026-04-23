@@ -19,4 +19,9 @@ class Purok extends Model
     {
         return $this->hasMany(Site::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

@@ -9,4 +9,9 @@ class ReviewCategory extends Model
     protected $fillable = [
         'category_name'
     ];
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

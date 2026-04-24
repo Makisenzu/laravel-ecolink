@@ -193,7 +193,7 @@ class AppTablesSeeder extends Seeder
             'purok_id' => $purokId,
             'site_name' => 'Main Collection Point',
             'latitude' => 10.31569900,
-            'longitude' => 123.88543700,
+            'longitude' => 23.88543700,
             'location_type' => 'drop-off',
             'status' => 'active',
             'created_at' => $now,

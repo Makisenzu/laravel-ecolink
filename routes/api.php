@@ -9,7 +9,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::middleware('auth:sanctum')->group(function (): void {
-    Route::get('/sites', [SiteController::class, 'index']);
-    Route::get('/sites/{id}', [SiteController::class, 'show']);
-    Route::post('/sites', [SiteController::class, 'store'])->middleware('role:admin');
+    Route::apiResource('sites', SiteController::class)->parameters([
+        'sites' => 'id',
+    ]);
 });

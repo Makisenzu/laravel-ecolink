@@ -8,14 +8,23 @@ use App\Http\Resources\SiteResource;
 use App\Services\SiteService;
 use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class SiteController extends Controller
+class SiteController extends Controller implements HasMiddleware
 {
     use ApiResponse;
 
     public function __construct(
         protected SiteService $siteService
     ) {}
+
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('role:admin|super-admin', only: ['store', 'update', 'destroy']),
+        ];
+    }
 
     public function index(): JsonResponse
     {

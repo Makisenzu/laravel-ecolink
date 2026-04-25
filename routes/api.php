@@ -10,4 +10,5 @@ Route::middleware('throttle:auth')->prefix('auth')->group(function (): void {
 
 Route::middleware(['auth:sanctum', 'throttle:api'])->group(function (): void {
     Route::get('/sites', [SiteController::class, 'index'])->middleware('permission:sites.view');
+    Route::post('/sites/create', [SiteController::class, 'store'])->middleware('permission:sites.create');
 });

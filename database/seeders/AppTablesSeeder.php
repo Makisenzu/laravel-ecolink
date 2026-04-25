@@ -48,25 +48,7 @@ class AppTablesSeeder extends Seeder
             'updated_at' => $now,
         ]);
 
-        // Permissions
-        $permPostsViewId = DB::table('permissions')->insertGetId([
-            'name' => 'View Posts',
-            'slug' => 'posts.view',
-            'module' => 'posts',
-            'description' => 'View posts',
-            'created_at' => $now,
-            'updated_at' => $now,
-        ]);
-
-        $permPostsCreateId = DB::table('permissions')->insertGetId([
-            'name' => 'Create Posts',
-            'slug' => 'posts.create',
-            'module' => 'posts',
-            'description' => 'Create posts',
-            'created_at' => $now,
-            'updated_at' => $now,
-        ]);
-
+        // Site Permissions
         $permSitesCreateId = DB::table('permissions')->insertGetId([
             'name' => 'Create Sites',
             'slug' => 'sites.create',
@@ -84,19 +66,198 @@ class AppTablesSeeder extends Seeder
             'created_at' => $now,
             'updated_at' => $now,
         ]);
+        $SiteupdateID = DB::table('permissions')->insertGetId([
+            'name' => 'Update Sites',
+            'slug' => 'sites.update',
+            'module' => 'sites',
+            'description' => 'Update site records',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        $deleteSiteID = DB::table('permissions')->insertGetId([
+            'name' => 'Delete Sites',
+            'slug' => 'sites.delete',
+            'module' => 'sites',
+            'description' => 'Delete site records',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        //Driver management permissions
+        $permDriversCreateId = DB::table('permissions')->insertGetId([
+            'name' => 'Create Drivers',
+            'slug' => 'drivers.create',
+            'module' => 'drivers',
+            'description' => 'Create driver records',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        $permDriversViewId = DB::table('permissions')->insertGetId([
+            'name' => 'View Drivers',
+            'slug' => 'drivers.view',
+            'module' => 'drivers',
+            'description' => 'View driver records',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+    
+        $permDriversUpdateId = DB::table('permissions')->insertGetId([
+            'name' => 'Update Drivers',
+            'slug' => 'drivers.update',
+            'module' => 'drivers',
+            'description' => 'Update driver records',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        $permDriversDeleteId = DB::table('permissions')->insertGetId([
+            'name' => 'Delete Drivers',
+            'slug' => 'drivers.delete',
+            'module' => 'drivers',
+            'description' => 'Delete driver records',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        //Driver side permissions
+        $taskViewId = DB::table('permissions')->insertGetId([
+            'name' => 'View Assigned Tasks',
+            'slug' => 'tasks.view',
+            'module' => 'tasks',
+            'description' => 'View assigned collection tasks',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+        $taskUpdateId = DB::table('permissions')->insertGetId([
+            'name' => 'Update Task Status',
+            'slug' => 'tasks.update',
+            'module' => 'tasks',
+            'description' => 'Update status of assigned tasks',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        //Schedule management permissions
+        $permScheduleCreateId = DB::table('permissions')->insertGetId([
+            'name' => 'Create Schedules',
+            'slug' => 'schedules.create',
+            'module' => 'schedules',
+            'description' => 'Create collection schedules',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        $permScheduleViewId = DB::table('permissions')->insertGetId([
+            'name' => 'View Schedules',
+            'slug' => 'schedules.view',
+            'module' => 'schedules',
+            'description' => 'View collection schedules',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        $permScheduleUpdateId = DB::table('permissions')->insertGetId([
+            'name' => 'Update Schedules',
+            'slug' => 'schedules.update',
+            'module' => 'schedules',
+            'description' => 'Update collection schedules',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        $permScheduleDeleteId = DB::table('permissions')->insertGetId([
+            'name' => 'Delete Schedules',
+            'slug' => 'schedules.delete',
+            'module' => 'schedules',
+            'description' => 'Delete collection schedules',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        //Post permissions
+        $permPostsCreateId = DB::table('permissions')->insertGetId([
+            'name' => 'Create Posts',
+            'slug' => 'posts.create',
+            'module' => 'posts',
+            'description' => 'Create community posts',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        $permPostsViewId = DB::table('permissions')->insertGetId([
+            'name' => 'View Posts',
+            'slug' => 'posts.view',
+            'module' => 'posts',
+            'description' => 'View community posts',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        $permPostsUpdateId = DB::table('permissions')->insertGetId([
+            'name' => 'Update Posts',
+            'slug' => 'posts.update',
+            'module' => 'posts',
+            'description' => 'Update community posts',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        $permPostsDeleteId = DB::table('permissions')->insertGetId([
+            'name' => 'Delete Posts',
+            'slug' => 'posts.delete',
+            'module' => 'posts',
+            'description' => 'Delete community posts',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+
 
         // Role permissions (pivot)
         DB::table('role_permissions')->insert([
-            ['role_id' => $superAdminRoleId, 'permission_id' => $permPostsViewId],
-            ['role_id' => $superAdminRoleId, 'permission_id' => $permPostsCreateId],
+            ['role_id' => $superAdminRoleId, 'permission_id' => $SiteupdateID],
+            ['role_id' => $superAdminRoleId, 'permission_id' => $deleteSiteID],
             ['role_id' => $superAdminRoleId, 'permission_id' => $permSitesCreateId],
             ['role_id' => $superAdminRoleId, 'permission_id' => $permSitesViewId],
-            ['role_id' => $adminRoleId, 'permission_id' => $permPostsViewId],
-            ['role_id' => $adminRoleId, 'permission_id' => $permPostsCreateId],
+            ['role_id' => $superAdminRoleId, 'permission_id' => $permDriversCreateId],
+            ['role_id' => $superAdminRoleId, 'permission_id' => $permDriversViewId],
+            ['role_id' => $superAdminRoleId, 'permission_id' => $permDriversUpdateId],
+            ['role_id' => $superAdminRoleId, 'permission_id' => $permDriversDeleteId],
+            ['role_id' => $superAdminRoleId, 'permission_id' => $permPostsCreateId],
+            ['role_id' => $superAdminRoleId, 'permission_id' => $permPostsViewId],
+            ['role_id' => $superAdminRoleId, 'permission_id' => $permPostsUpdateId],
+            ['role_id' => $superAdminRoleId, 'permission_id' => $permPostsDeleteId],
+            ['role_id' => $superAdminRoleId, 'permission_id' => $permScheduleCreateId],
+            ['role_id' => $superAdminRoleId, 'permission_id' => $permScheduleViewId],
+            ['role_id' => $superAdminRoleId, 'permission_id' => $permScheduleUpdateId],
+            ['role_id' => $superAdminRoleId, 'permission_id' => $permScheduleDeleteId],
+
+            //admin permissions
+            ['role_id' => $adminRoleId, 'permission_id' => $SiteupdateID],
+            ['role_id' => $adminRoleId, 'permission_id' => $deleteSiteID],
             ['role_id' => $adminRoleId, 'permission_id' => $permSitesCreateId],
             ['role_id' => $adminRoleId, 'permission_id' => $permSitesViewId],
+            ['role_id' => $adminRoleId, 'permission_id' => $permDriversCreateId],
+            ['role_id' => $adminRoleId, 'permission_id' => $permDriversViewId],
+            ['role_id' => $adminRoleId, 'permission_id' => $permDriversUpdateId],
+            ['role_id' => $adminRoleId, 'permission_id' => $permDriversDeleteId],
+            ['role_id' => $adminRoleId, 'permission_id' => $permPostsCreateId],
+            ['role_id' => $adminRoleId, 'permission_id' => $permPostsViewId],
+            ['role_id' => $adminRoleId, 'permission_id' => $permPostsUpdateId],
+            ['role_id' => $adminRoleId, 'permission_id' => $permPostsDeleteId],
+            ['role_id' => $adminRoleId, 'permission_id' => $permScheduleCreateId],
+            ['role_id' => $adminRoleId, 'permission_id' => $permScheduleViewId],
+            ['role_id' => $adminRoleId, 'permission_id' => $permScheduleUpdateId],
+            ['role_id' => $adminRoleId, 'permission_id' => $permScheduleDeleteId],
+            //driver permissions
+            ['role_id' => $driverRoleId, 'permission_id' => $permDriversViewId],
             ['role_id' => $driverRoleId, 'permission_id' => $permSitesViewId],
-            ['role_id' => $residentRoleId, 'permission_id' => $permPostsViewId],
+            ['role_id' => $driverRoleId, 'permission_id' => $taskViewId],
+            ['role_id' => $driverRoleId, 'permission_id' => $taskUpdateId],
+            //resident permissions
+            ['role_id' => $residentRoleId, 'permission_id' => $permSitesViewId],
         ]);
 
         // Users
@@ -140,13 +301,13 @@ class AppTablesSeeder extends Seeder
         ]);
 
         $residentUserId = DB::table('users')->insertGetId([
-            'firstname' => 'Rina',
-            'middlename' => null,
-            'lastname' => 'Resident',
-            'username' => 'rinaresident',
-            'email' => 'resident@example.com',
+            'firstname' => 'Denmark',
+            'middlename' => 'B.',
+            'lastname' => 'Rivera',
+            'username' => 'makisenzu',
+            'email' => 'den@gmail.com',
             'email_verified_at' => $now,
-            'password' => Hash::make('password123'),
+            'password' => Hash::make('denden123'),
             'remember_token' => null,
             'created_at' => $now,
             'updated_at' => $now,
@@ -162,21 +323,21 @@ class AppTablesSeeder extends Seeder
 
         // Geography hierarchy
         $provinceId = DB::table('provinces')->insertGetId([
-            'province_name' => 'Cebu',
+            'province_name' => 'Agusan',
             'created_at' => $now,
             'updated_at' => $now,
         ]);
 
         $geographicId = DB::table('geographics')->insertGetId([
             'province_id' => $provinceId,
-            'geographic_name' => 'Metro Zone',
+            'geographic_name' => 'San Francisco',
             'created_at' => $now,
             'updated_at' => $now,
         ]);
 
         $barangayId = DB::table('barangays')->insertGetId([
             'geographic_id' => $geographicId,
-            'barangay_name' => 'Barangay Uno',
+            'barangay_name' => 'Barangay 1',
             'created_at' => $now,
             'updated_at' => $now,
         ]);
@@ -285,7 +446,7 @@ class AppTablesSeeder extends Seeder
             'resident_id' => $residentId,
             'purok_id' => $purokId,
             'review_category_id' => $reviewCategoryId,
-            'fullname' => 'Rina Resident',
+            'fullname' => 'Denmark Rivera',
             'content' => 'Great service and on-time collection.',
             'suggestion' => 'Add weekend schedule updates.',
             'rating' => 4.5,

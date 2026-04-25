@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\Admin\DriverController;
+use App\Http\Controllers\Api\V1\Admin\ScheduleController;
 use App\Http\Controllers\Api\V1\Admin\SiteController;
 use App\Http\Controllers\Api\V1\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -17,4 +18,7 @@ Route::middleware(['auth:sanctum', 'throttle:api'])->group(function (): void {
     //driver management
     Route::get('/drivers', [DriverController::class, 'index'])->middleware('permission:drivers.view');
     Route::put('/drivers/{id}/status', [DriverController::class, 'updateStatus'])->middleware('permission:drivers.update'); 
+
+    //schedule management
+    Route::get('/schedules', [ScheduleController::class, 'index'])->middleware('permission:schedules.view');
 });

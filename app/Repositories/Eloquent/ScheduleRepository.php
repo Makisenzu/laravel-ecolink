@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Repositories\Eloquent;
+
 use App\Models\Schedule;
 use App\Repositories\Interfaces\ScheduleRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;

@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Services;
+
 use App\Repositories\Interfaces\ScheduleRepositoryInterface;
 
 class ScheduleService

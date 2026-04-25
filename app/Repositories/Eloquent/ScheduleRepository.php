@@ -32,6 +32,11 @@ class ScheduleRepository implements ScheduleRepositoryInterface
         return $schedule;
     }
 
+    public function findScheduleByDriverId(int $driverId): LengthAwarePaginator
+    {
+        return Schedule::where('driver_id', $driverId)->paginate(10);
+    }
+
     public function createSchedule(array $data): Schedule
     {
         return Schedule::create($data);

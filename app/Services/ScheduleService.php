@@ -28,6 +28,11 @@ class ScheduleService
         return $this->scheduleRepository->findSchedulesByBarangayId($barangayId);
     }
 
+    public function getSchedulesByDriverId(int $driverId)
+    {
+        return $this->scheduleRepository->findScheduleByDriverId($driverId);
+    }
+
     public function getScheduleById(int $id)
     {
         return $this->scheduleRepository->findScheduleById($id);

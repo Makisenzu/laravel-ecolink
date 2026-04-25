@@ -21,4 +21,11 @@ Route::middleware(['auth:sanctum', 'throttle:api'])->group(function (): void {
 
     //schedule management
     Route::get('/schedules', [ScheduleController::class, 'index'])->middleware('permission:schedules.view');
+    Route::get('/schedules/driver/{driverId}', [ScheduleController::class, 'findScheduleByDriverId'])->middleware('permission:schedules.view');
+    Route::get('/schedules/status/{status}', [ScheduleController::class, 'showScheduleByStatus'])->middleware('permission:schedules.view');
+    Route::get('/schedules/barangay/{barangayId}', [ScheduleController::class, 'showScheduleByBarangayId'])->middleware('permission:schedules.view');
+    Route::get('/schedules/{id}', [ScheduleController::class, 'show'])->middleware('permission:schedules.view');
+    Route::post('/schedules/create', [ScheduleController::class, 'store'])->middleware('permission:schedules.create');
+    Route::put('/schedules/{id}', [ScheduleController::class, 'update'])->middleware('permission:schedules.update');
+    Route::delete('/schedules/{id}', [ScheduleController::class, 'destroy'])->middleware('permission:schedules.delete');
 });

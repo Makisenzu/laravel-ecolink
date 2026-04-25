@@ -10,6 +10,7 @@ interface ScheduleRepositoryInterface
     public function all(): LengthAwarePaginator;
     public function getScheduleByStatus(string $status): LengthAwarePaginator;
     public function findSchedulesByBarangayId(int $barangayId): LengthAwarePaginator;
+    public function findScheduleByDriverId(int $driverId): LengthAwarePaginator;
     public function findScheduleById(int $id): ?Schedule;
     public function createSchedule(array $data): Schedule;
     public function updateSchedule(int $id, array $data): ?Schedule;

@@ -17,12 +17,10 @@ class AuthController extends ApiController
         if (! $user || ! Hash::check($request->password, $user->password)) {
             return $this->unauthorized('Invalid credentials');
         }
-        if (! $user->is_active) {
-            return $this->forbidden('Your account has been deactivated. Please contact the administrator.');
-        }
-        $user->update(['last_login_at' => now()]);
+
         $token = $user->createToken('auth-token')->plainTextToken;
-        $user->load('roles.permissions', 'person.contactInformation', 'person.addresses', 'staff.office');
+        $user->load('roles.permissions');
+
         return $this->success([
             'token' => $token,
             'user' => new UserResource($user),

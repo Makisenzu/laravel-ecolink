@@ -16,11 +16,12 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'rfid_uid' => $this->rfid_uid,
+            'firstname' => $this->firstname,
+            'middlename' => $this->middlename,
+            'lastname' => $this->lastname,
+            'username' => $this->username,
             'email' => $this->email,
             'email_verified_at' => $this->email_verified_at?->toIso8601String(),
-            'is_active' => $this->is_active,
-            'last_login_at' => $this->last_login_at?->toIso8601String(),
             'created_at' => $this->created_at?->toIso8601String(),
             'updated_at' => $this->updated_at?->toIso8601String(),
             'roles' => RoleResource::collection($this->whenLoaded('roles')),

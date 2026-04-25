@@ -20,11 +20,14 @@ Route::middleware(['auth:sanctum', 'throttle:api'])->group(function (): void {
     Route::put('/drivers/{id}/status', [DriverController::class, 'updateStatus'])->middleware('permission:drivers.update'); 
 
     //schedule management
-    Route::get('/schedules', [ScheduleController::class, 'index'])->middleware('permission:schedules.view');
-    Route::get('/schedules/driver/{driverId}', [ScheduleController::class, 'findScheduleByDriverId'])->middleware('permission:schedules.view');
-    Route::get('/schedules/status/{status}', [ScheduleController::class, 'showScheduleByStatus'])->middleware('permission:schedules.view');
-    Route::get('/schedules/barangay/{barangayId}', [ScheduleController::class, 'showScheduleByBarangayId'])->middleware('permission:schedules.view');
-    Route::get('/schedules/{id}', [ScheduleController::class, 'show'])->middleware('permission:schedules.view');
+    Route::middleware('permission:schedules.view')->group(function (): void {
+        Route::get('/schedules', [ScheduleController::class, 'index']);
+        Route::get('/schedules/driver/{driverId}', [ScheduleController::class, 'findScheduleByDriverId']);
+        Route::get('/schedules/status/{status}', [ScheduleController::class, 'showScheduleByStatus']);
+        Route::get('/schedules/barangay/{barangayId}', [ScheduleController::class, 'showScheduleByBarangayId']);
+        Route::get('/schedules/{id}', [ScheduleController::class, 'show']);
+    });
+
     Route::post('/schedules/create', [ScheduleController::class, 'store'])->middleware('permission:schedules.create');
     Route::put('/schedules/{id}', [ScheduleController::class, 'update'])->middleware('permission:schedules.update');
     Route::delete('/schedules/{id}', [ScheduleController::class, 'destroy'])->middleware('permission:schedules.delete');

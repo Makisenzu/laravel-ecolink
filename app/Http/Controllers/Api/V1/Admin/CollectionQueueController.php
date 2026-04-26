@@ -29,6 +29,9 @@ class CollectionQueueController extends Controller
     public function showByScheduleId(Request $request, int $scheduleId)
     {
         $queues = $this->queueService->getCollectionQueueByScheduleId($scheduleId);
+        if ($queues->isEmpty()) {
+            return $this->notFound('No collection queues found for the specified schedule ID');
+        }
 
         return $this->success(CollectionQueueResource::collection($queues)->response()->getData(true));
     }

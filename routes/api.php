@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\Admin\CollectionQueueController;
 use App\Http\Controllers\Api\V1\Admin\DriverController;
 use App\Http\Controllers\Api\V1\Admin\ScheduleController;
 use App\Http\Controllers\Api\V1\Admin\SiteController;
@@ -27,8 +28,13 @@ Route::middleware(['auth:sanctum', 'throttle:api'])->group(function (): void {
         Route::get('/schedules/barangay/{barangayId}', [ScheduleController::class, 'showScheduleByBarangayId']);
         Route::get('/schedules/{id}', [ScheduleController::class, 'show']);
     });
-
     Route::post('/schedules/create', [ScheduleController::class, 'store'])->middleware('permission:schedules.create');
     Route::put('/schedules/{id}', [ScheduleController::class, 'update'])->middleware('permission:schedules.update');
     Route::delete('/schedules/{id}', [ScheduleController::class, 'destroy'])->middleware('permission:schedules.delete');
+
+    //Queue management
+    Route::get('/collection-queues', [CollectionQueueController::class, 'index'])->middleware('permission:queues.view');
+    Route::get('/collection-queues/schedule/{scheduleId}', [CollectionQueueController::class, 'showByScheduleId'])->middleware('permission:queues.view');
+    Route::put('/collection-queues/{id}/status', [CollectionQueueController::class, 'updateStatus'])->middleware('permission:queues.update');
+
 });

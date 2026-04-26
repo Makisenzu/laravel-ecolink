@@ -176,6 +176,25 @@ class AppTablesSeeder extends Seeder
             'updated_at' => $now,
         ]);
 
+        //Queue Permission
+        $permQueueShowId = DB::table('permissions')->insertGetId([
+            'name' => 'View Collection Queue',
+            'slug' => 'queue.view',
+            'module' => 'queue',
+            'description' => 'View collection queue items',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        $permQueueUpdateId = DB::table('permissions')->insertGetId([
+            'name' => 'Update Collection Queue Status',
+            'slug' => 'queue.update',
+            'module' => 'queue',
+            'description' => 'Update status of collection queue items',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
         //Post permissions
         $permPostsCreateId = DB::table('permissions')->insertGetId([
             'name' => 'Create Posts',
@@ -233,6 +252,8 @@ class AppTablesSeeder extends Seeder
             ['role_id' => $superAdminRoleId, 'permission_id' => $permScheduleViewId],
             ['role_id' => $superAdminRoleId, 'permission_id' => $permScheduleUpdateId],
             ['role_id' => $superAdminRoleId, 'permission_id' => $permScheduleDeleteId],
+            ['role_id' => $superAdminRoleId, 'permission_id' => $permQueueUpdateId],
+            ['role_id' => $superAdminRoleId, 'permission_id' => $permQueueShowId],
 
             //admin permissions
             ['role_id' => $adminRoleId, 'permission_id' => $SiteupdateID],
@@ -251,11 +272,15 @@ class AppTablesSeeder extends Seeder
             ['role_id' => $adminRoleId, 'permission_id' => $permScheduleViewId],
             ['role_id' => $adminRoleId, 'permission_id' => $permScheduleUpdateId],
             ['role_id' => $adminRoleId, 'permission_id' => $permScheduleDeleteId],
+            ['role_id' => $adminRoleId, 'permission_id' => $permQueueShowId],
             //driver permissions
             ['role_id' => $driverRoleId, 'permission_id' => $permDriversViewId],
             ['role_id' => $driverRoleId, 'permission_id' => $permSitesViewId],
             ['role_id' => $driverRoleId, 'permission_id' => $taskViewId],
             ['role_id' => $driverRoleId, 'permission_id' => $taskUpdateId],
+            ['role_id' => $driverRoleId, 'permission_id' => $permQueueUpdateId],
+            ['role_id' => $driverRoleId, 'permission_id' => $permQueueShowId],
+
             //resident permissions
             ['role_id' => $residentRoleId, 'permission_id' => $permSitesViewId],
         ]);

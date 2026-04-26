@@ -23,7 +23,7 @@ class UpdateCollectionQueueRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'status' => ['required', 'string', 'in:pending,completed,failed,progressing'],
+            'status' => ['sometimes', 'string', 'in:pending,completed,failed,progressing'],
         ];
     }
 }

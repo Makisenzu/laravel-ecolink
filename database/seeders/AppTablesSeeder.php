@@ -349,17 +349,74 @@ class AppTablesSeeder extends Seeder
             'updated_at' => $now,
         ]);
 
-        // Site
-        $siteId = DB::table('sites')->insertGetId([
+        // Station and collection sites
+        $stationId = DB::table('sites')->insertGetId([
             'purok_id' => $purokId,
-            'site_name' => 'Main Collection Point',
+            'site_name' => 'Barangay Station',
             'latitude' => 10.31569900,
             'longitude' => 23.88543700,
-            'location_type' => 'drop-off',
+            'location_type' => 'station',
             'status' => 'active',
             'created_at' => $now,
             'updated_at' => $now,
         ]);
+
+        $site1Id = DB::table('sites')->insertGetId([
+            'purok_id' => $purokId,
+            'site_name' => 'Site 1',
+            'latitude' => 10.31572900,
+            'longitude' => 23.88543700,
+            'location_type' => 'site',
+            'status' => 'active',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        $site2Id = DB::table('sites')->insertGetId([
+            'purok_id' => $purokId,
+            'site_name' => 'Site 2',
+            'latitude' => 10.31574900,
+            'longitude' => 23.88543700,
+            'location_type' => 'site',
+            'status' => 'active',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        $site3Id = DB::table('sites')->insertGetId([
+            'purok_id' => $purokId,
+            'site_name' => 'Site 3',
+            'latitude' => 10.31571900,
+            'longitude' => 23.88543700,
+            'location_type' => 'site',
+            'status' => 'active',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        $site4Id = DB::table('sites')->insertGetId([
+            'purok_id' => $purokId,
+            'site_name' => 'Site 4',
+            'latitude' => 10.31570900,
+            'longitude' => 23.88543700,
+            'location_type' => 'site',
+            'status' => 'active',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        $site5Id = DB::table('sites')->insertGetId([
+            'purok_id' => $purokId,
+            'site_name' => 'Site 5',
+            'latitude' => 10.31573900,
+            'longitude' => 23.88543700,
+            'location_type' => 'site',
+            'status' => 'active',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+
 
         // Driver profile
         $driverId = DB::table('drivers')->insertGetId([
@@ -381,15 +438,6 @@ class AppTablesSeeder extends Seeder
             'updated_at' => $now,
         ]);
 
-        DB::table('collection_queues')->insert([
-            'schedule_id' => $scheduleId,
-            'site_id' => $siteId,
-            'queue_order' => 1,
-            'status' => 'pending',
-            'collected_at' => null,
-            'created_at' => $now,
-            'updated_at' => $now,
-        ]);
 
         // Waste setup
         $wasteCategoryId = DB::table('waste_categories')->insertGetId([

@@ -2,7 +2,10 @@
 
 namespace App\Services;
 
+use App\Models\CollectionQueue;
+use App\Models\Site;
 use App\Repositories\Interfaces\ScheduleRepositoryInterface;
+use Illuminate\Support\Facades\DB;
 
 class ScheduleService
 {
@@ -40,7 +43,34 @@ class ScheduleService
 
     public function createSchedule(array $data)
     {
-        return $this->scheduleRepository->createSchedule($data);
+        return DB::transaction(function () use ($data) {
+            $schedule = $this->scheduleRepository->createSchedule($data);
+
+            $sites = Site::where('status', 'active')
+                ->whereHas('purok', function ($query) use ($schedule) {
+                    $query->where('barangay_id', $schedule->barangay_id);
+                })
+                ->orderBy('id')
+                ->get(['id']);
+
+            if ($sites->isNotEmpty()) {
+                $queueRows = [];
+
+                foreach ($sites as $site) {
+                    $queueRows[] = [
+                        'schedule_id' => $schedule->id,
+                        'site_id' => $site->id,
+                        'status' => 'pending',
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                }
+
+                CollectionQueue::insert($queueRows);
+            }
+
+            return $schedule;
+        });
     }
 
     public function updateSchedule(int $id, array $data)

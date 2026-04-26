@@ -23,21 +23,11 @@ class CollectionQueueRepository implements CollectionQueueRepositoryInterface
             ->paginate(10);
     }
 
-    public function createCollectionQueue(array $data): CollectionQueue
-    {
-        return CollectionQueue::create($data);
-    }
-
-    public function updateCollectionQueue(int $id, array $data): CollectionQueue
+    public function updateQueueStatus(int $id, string $status): CollectionQueue
     {
         $collectionQueue = CollectionQueue::findOrFail($id);
-        $collectionQueue->update($data);
+        $collectionQueue->update(['status' => $status]);
         return $collectionQueue;
     }
 
-    public function deleteCollectionQueue(int $id): bool
-    {
-        $collectionQueue = CollectionQueue::findOrFail($id);
-        return $collectionQueue->delete();
-    }
 }

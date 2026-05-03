@@ -48,5 +48,8 @@ Route::middleware(['auth:sanctum', 'throttle:api'])->group(function (): void {
 
     //Review management
     Route::get('/reviews', [ReviewController::class, 'index'])->middleware('permission:reviews.view');
-
+    Route::post('/reviews/create', [ReviewController::class, 'store'])->middleware('permission:reviews.create');
+    Route::get('/reviews/{review}', [ReviewController::class, 'show'])->middleware('permission:reviews.view');
+    Route::put('/reviews/{review}', [ReviewController::class, 'update'])->middleware('permission:reviews.update');
+    Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middleware('permission:reviews.delete');
 });

@@ -24,7 +24,7 @@ class UpdateReviewRequest extends FormRequest
     {
         return [
             'content' => 'sometimes|string|max:1000',
-            'rating' => 'nullable|numeric|min:1|max:5',
+            'rating' => 'sometimes|numeric|min:1|max:5',
             'fullname' => 'nullable|string|max:255',
             'is_anonymous' => 'boolean',
         ];

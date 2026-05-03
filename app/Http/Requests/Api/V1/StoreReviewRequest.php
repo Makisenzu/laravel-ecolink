@@ -23,13 +23,15 @@ class StoreReviewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'resident_id' => 'required|exists:residents,id',
+            'is_anonymous' => 'required|boolean',
+            'resident_id' => 'required_if:is_anonymous,false|nullable|exists:residents,id',
             'purok_id' => 'required|exists:puroks,id',
             'review_category_id' => 'required|exists:review_categories,id',
             'content' => 'required|string|max:1000',
-            'rating' => 'nullable|numeric|min:1|max:5',
+            'rating' => 'required|numeric|min:1|max:5',
             'fullname' => 'nullable|string|max:255',
-            'is_anonymous' => 'boolean',
+            'suggestion' => 'nullable|string|max:1000',
+            'status' => 'nullable|string|in:pending,approved,rejected',
         ];
     }
 }

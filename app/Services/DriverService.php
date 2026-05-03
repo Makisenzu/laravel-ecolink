@@ -33,9 +33,9 @@ class DriverService
         return $this->driverRepository->findDriverById($id);
     }
 
-    public function updateDriverStatus(int $id, array $data)
+    public function updateDriver(int $id, array $data)
     {
-        return $this->driverRepository->updateDriverStatus($id, $data);
+        return $this->driverRepository->updateDriver($id, $data);
     }
 
     public function deleteDriver(int $id)

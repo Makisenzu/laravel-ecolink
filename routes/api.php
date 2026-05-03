@@ -22,7 +22,7 @@ Route::middleware(['auth:sanctum', 'throttle:api'])->group(function (): void {
 
     //driver management
     Route::get('/drivers', [DriverController::class, 'index'])->middleware('permission:drivers.view');
-    Route::put('/drivers/update/status/{driver}', [DriverController::class, 'updateStatus'])->middleware('permission:drivers.update');
+    Route::put('/drivers/update/status/{driver}', [DriverController::class, 'update'])->middleware('permission:drivers.update');
     Route::get('/drivers/status/{status}', [DriverController::class, 'showDriversByStatus'])->middleware('permission:drivers.view');
     Route::get('/drivers/{driver}', [DriverController::class, 'show'])->middleware('permission:drivers.view');
     Route::post('/drivers/create', [DriverController::class, 'store'])->middleware('permission:drivers.create'); 

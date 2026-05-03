@@ -32,7 +32,7 @@ class DriverRepository implements DriverRepositoryInterface
         return Driver::create($data);
     }
 
-    public function updateDriverStatus(int $id, array $data): ?Driver
+    public function updateDriver(int $id, array $data): ?Driver
     {
         $driver = Driver::find($id);
         if ($driver) {

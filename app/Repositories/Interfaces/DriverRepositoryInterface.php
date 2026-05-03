@@ -11,6 +11,6 @@ interface DriverRepositoryInterface
     public function getDriversByStatus(string $status): LengthAwarePaginator;
     public function findDriverById(int $id): ?Driver;
     public function createDriver(array $data): Driver;
-    public function updateDriverStatus(int $id, array $data): ?Driver;
+    public function updateDriver(int $id, array $data): ?Driver;
     public function deleteDriver(int $id): bool;
 }

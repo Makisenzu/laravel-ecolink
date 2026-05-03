@@ -9,7 +9,6 @@ use App\Models\CollectionQueue;
 use App\Models\Schedule;
 use App\Services\CollectionQueueService;
 use App\Traits\ApiResponse;
-use Illuminate\Http\Request;
 
 class CollectionQueueController extends Controller
 {
@@ -28,7 +27,7 @@ class CollectionQueueController extends Controller
         return $this->success(CollectionQueueResource::collection($queues)->response()->getData(true));
     }
 
-    public function showByScheduleId(Request $request, Schedule $schedule)
+    public function showByScheduleId(Schedule $schedule)
     {
         $queues = $this->queueService->getCollectionQueueByScheduleId($schedule->id);
         if ($queues->isEmpty()) {

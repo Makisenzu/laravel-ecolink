@@ -523,6 +523,7 @@ class AppTablesSeeder extends Seeder
         ]);
 
         DB::table('reviews')->insert([
+            'ulid' => (string) Str::ulid(),
             'resident_id' => $residentId,
             'purok_id' => $purokId,
             'review_category_id' => $reviewCategoryId,

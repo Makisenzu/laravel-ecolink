@@ -16,6 +16,9 @@ Route::middleware(['auth:sanctum', 'throttle:api'])->group(function (): void {
     //site management
     Route::get('/sites', [SiteController::class, 'index'])->middleware('permission:sites.view');
     Route::post('/sites/create', [SiteController::class, 'store'])->middleware('permission:sites.create');
+    Route::get('/sites/{id}', [SiteController::class, 'show'])->middleware('permission:sites.view');
+    Route::put('/sites/{site}', [SiteController::class, 'update'])->middleware('permission:sites.update');
+    Route::delete('/sites/{id}', [SiteController::class, 'destroy'])->middleware('permission:sites.delete');
 
     //driver management
     Route::get('/drivers', [DriverController::class, 'index'])->middleware('permission:drivers.view');

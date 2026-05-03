@@ -74,7 +74,7 @@ class ScheduleController extends Controller
     {
         $schedule = $this->scheduleService->createSchedule($request->validated());
 
-        return $this->success(new ScheduleResource($schedule), 'Schedule created successfully', 201);
+        return $this->success(new ScheduleResource($schedule), 'Schedule created successfully');
     }
 
     public function update(UpdateScheduleRequest $request, Schedule $schedule): JsonResponse

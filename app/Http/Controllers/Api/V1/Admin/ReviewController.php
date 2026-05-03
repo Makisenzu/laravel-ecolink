@@ -31,7 +31,7 @@ class ReviewController extends Controller
     {
         $review = $this->reviewService->createReview($request->validated());
 
-        return $this->success(new ReviewResource($review), 'Review created successfully', 201);
+        return $this->success(new ReviewResource($review), 'Review created successfully');
     }
 
     public function show(Review $review)

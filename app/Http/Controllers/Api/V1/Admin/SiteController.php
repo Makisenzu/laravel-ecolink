@@ -41,7 +41,7 @@ class SiteController extends Controller
     {
         $site = $this->siteService->addSite($request->validated());
 
-        return $this->success(new SiteResource($site), 'Site created successfully', 201);
+        return $this->success(new SiteResource($site), 'Site created successfully');
     }
 
     public function update(UpdateSiteRequest $request, Site $site): JsonResponse
@@ -55,9 +55,9 @@ class SiteController extends Controller
         return $this->success(new SiteResource($site), 'Site updated successfully');
     }
 
-    public function destroy(int $id): JsonResponse
+    public function destroy(Site $site): JsonResponse
     {
-        $deleted = $this->siteService->deleteSite($id);
+        $deleted = $this->siteService->deleteSite($site->id);
 
         if (! $deleted) {
             return $this->notFound('Site not found');

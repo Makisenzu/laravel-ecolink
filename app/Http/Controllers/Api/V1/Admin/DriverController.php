@@ -46,7 +46,7 @@ class DriverController extends Controller
     {
         $driver = $this->driverService->addNewDriver($request->validated());
 
-        return $this->success(new DriverResource($driver), 'Driver created successfully', 201);
+        return $this->success(new DriverResource($driver), 'Driver created successfully');
     }
 
     public function update(UpdateDriverRequest $request, Driver $driver): JsonResponse

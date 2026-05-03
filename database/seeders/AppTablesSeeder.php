@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AppTablesSeeder extends Seeder
 {
@@ -287,6 +288,7 @@ class AppTablesSeeder extends Seeder
 
         // Users
         $superAdminUserId = DB::table('users')->insertGetId([
+            'ulid' => (string) Str::ulid(),
             'firstname' => 'Super',
             'middlename' => null,
             'lastname' => 'Admin',
@@ -300,6 +302,7 @@ class AppTablesSeeder extends Seeder
         ]);
 
         $adminUserId = DB::table('users')->insertGetId([
+            'ulid' => (string) Str::ulid(),
             'firstname' => 'Alice',
             'middlename' => 'M',
             'lastname' => 'Admin',
@@ -313,6 +316,7 @@ class AppTablesSeeder extends Seeder
         ]);
 
         $driverUserId = DB::table('users')->insertGetId([
+            'ulid' => (string) Str::ulid(),
             'firstname' => 'Dan',
             'middlename' => null,
             'lastname' => 'Driver',
@@ -326,6 +330,7 @@ class AppTablesSeeder extends Seeder
         ]);
 
         $residentUserId = DB::table('users')->insertGetId([
+            'ulid' => (string) Str::ulid(),
             'firstname' => 'Denmark',
             'middlename' => 'B.',
             'lastname' => 'Rivera',
@@ -445,6 +450,7 @@ class AppTablesSeeder extends Seeder
 
         // Driver profile
         $driverId = DB::table('drivers')->insertGetId([
+            'ulid' => (string) Str::ulid(),
             'user_id' => $driverUserId,
             'licence_number' => 'LIC-2026-0001',
             'status' => 'active',
@@ -455,6 +461,7 @@ class AppTablesSeeder extends Seeder
 
         // Schedule & queue
         $scheduleId = DB::table('schedules')->insertGetId([
+            'ulid' => (string) Str::ulid(),
             'barangay_id' => $barangayId,
             'driver_id' => $driverId,
             'collection_date' => $now,

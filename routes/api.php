@@ -18,23 +18,23 @@ Route::middleware(['auth:sanctum', 'throttle:api'])->group(function (): void {
 
     //driver management
     Route::get('/drivers', [DriverController::class, 'index'])->middleware('permission:drivers.view');
-    Route::put('/drivers/{id}/status', [DriverController::class, 'updateStatus'])->middleware('permission:drivers.update'); 
+    Route::put('/drivers/{driver}/status', [DriverController::class, 'updateStatus'])->middleware('permission:drivers.update'); 
 
     //schedule management
     Route::middleware('permission:schedules.view')->group(function (): void {
         Route::get('/schedules', [ScheduleController::class, 'index']);
-        Route::get('/schedules/driver/{driverId}', [ScheduleController::class, 'findScheduleByDriverId']);
+        Route::get('/schedules/driver/{driver}', [ScheduleController::class, 'findScheduleByDriverId']);
         Route::get('/schedules/status/{status}', [ScheduleController::class, 'showScheduleByStatus']);
         Route::get('/schedules/barangay/{barangayId}', [ScheduleController::class, 'showScheduleByBarangayId']);
-        Route::get('/schedules/{id}', [ScheduleController::class, 'show']);
+        Route::get('/schedules/{schedule}', [ScheduleController::class, 'show']);
     });
     Route::post('/schedules/create', [ScheduleController::class, 'store'])->middleware('permission:schedules.create');
-    Route::put('/schedules/{id}', [ScheduleController::class, 'update'])->middleware('permission:schedules.update');
-    Route::delete('/schedules/{id}', [ScheduleController::class, 'destroy'])->middleware('permission:schedules.delete');
+    Route::put('/schedules/{schedule}', [ScheduleController::class, 'update'])->middleware('permission:schedules.update');
+    Route::delete('/schedules/{schedule}', [ScheduleController::class, 'destroy'])->middleware('permission:schedules.delete');
 
     //Queue management
     Route::get('/collection-queues', [CollectionQueueController::class, 'index'])->middleware('permission:queues.view');
-    Route::get('/collection-queues/schedule/{scheduleId}', [CollectionQueueController::class, 'showByScheduleId'])->middleware('permission:queues.view');
-    Route::put('/collection-queues/{id}/status', [CollectionQueueController::class, 'updateStatus'])->middleware('permission:queues.update');
+    Route::get('/collection-queues/schedule/{schedule}', [CollectionQueueController::class, 'showByScheduleId'])->middleware('permission:queues.view');
+    Route::put('/collection-queues/{collectionQueue}/status', [CollectionQueueController::class, 'updateStatus'])->middleware('permission:queues.update');
 
 });

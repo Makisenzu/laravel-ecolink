@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('collection_queues', function (Blueprint $table) {
             $table->id();
+            $table->ulid('ulid')->unique();
             $table->foreignId('schedule_id')->constrained('schedules')->cascadeOnDelete();
             $table->foreignId('site_id')->constrained('sites')->cascadeOnDelete();
             $table->integer('queue_order');

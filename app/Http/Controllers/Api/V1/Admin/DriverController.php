@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\StoreDriverRequest;
 use App\Http\Resources\DriverResource;
+use App\Models\Driver;
 use App\Services\DriverService;
 use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
@@ -52,9 +53,9 @@ class DriverController extends Controller
         return $this->success(new DriverResource($driver), 'Driver created successfully', 201);
     }
 
-    public function updateStatus(Request $request, int $id): JsonResponse
+    public function updateStatus(Request $request, Driver $driver): JsonResponse
     {
-        $driver = $this->driverService->updateDriverStatus($id, $request->only('status'));
+        $driver = $this->driverService->updateDriverStatus($driver->id, $request->only('status'));
 
         if (! $driver) {
             return $this->notFound('Driver not found');

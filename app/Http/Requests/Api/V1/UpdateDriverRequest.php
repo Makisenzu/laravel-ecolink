@@ -22,7 +22,8 @@ class UpdateDriverRequest extends FormRequest
      */
     public function rules(): array
     {
-        $driverId = $this->route('id') ?? $this->route('driver');
+        $driverRouteParam = $this->route('driver') ?? $this->route('id');
+        $driverId = is_object($driverRouteParam) ? $driverRouteParam->id : $driverRouteParam;
 
         return [
             'user_id' => ['sometimes', 'integer', 'exists:users,id'],

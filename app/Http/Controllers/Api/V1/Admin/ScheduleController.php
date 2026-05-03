@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\StoreScheduleRequest;
 use App\Http\Requests\Api\V1\UpdateScheduleRequest;
 use App\Http\Resources\ScheduleResource;
+use App\Models\Driver;
+use App\Models\Schedule;
 use App\Services\ScheduleService;
 use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
@@ -49,18 +51,18 @@ class ScheduleController extends Controller
         return $this->success(ScheduleResource::collection($schedules)->response()->getData(true));
     }
 
-    public function show(int $id): JsonResponse
+    public function show(Schedule $schedule): JsonResponse
     {
-        $schedule = $this->scheduleService->getScheduleById($id);
+        $schedule = $this->scheduleService->getScheduleById($schedule->id);
         if (!$schedule) {
             return $this->notFound('Schedule not found');
         }
         return $this->success(new ScheduleResource($schedule)->response()->getData(true));
     }
 
-    public function findScheduleByDriverId(int $driverId): JsonResponse
+    public function findScheduleByDriverId(Driver $driver): JsonResponse
     {
-        $schedules = $this->scheduleService->getSchedulesByDriverId($driverId);
+        $schedules = $this->scheduleService->getSchedulesByDriverId($driver->id);
         if ($schedules->isEmpty()) {
             return $this->success([], 'No schedules found for the specified driver');
         }
@@ -75,18 +77,18 @@ class ScheduleController extends Controller
         return $this->success(new ScheduleResource($schedule), 'Schedule created successfully', 201);
     }
 
-    public function update(UpdateScheduleRequest $request, int $id): JsonResponse
+    public function update(UpdateScheduleRequest $request, Schedule $schedule): JsonResponse
     {
-        $schedule = $this->scheduleService->updateSchedule($id, $request->validated());
+        $schedule = $this->scheduleService->updateSchedule($schedule->id, $request->validated());
         if (!$schedule) {
             return $this->notFound('Schedule not found');
         }
         return $this->success(new ScheduleResource($schedule), 'Schedule updated successfully');
     }
 
-    public function destroy(int $id): JsonResponse
+    public function destroy(Schedule $schedule): JsonResponse
     {
-        $deleted = $this->scheduleService->deleteSchedule($id);
+        $deleted = $this->scheduleService->deleteSchedule($schedule->id);
         if (!$deleted) {
             return $this->notFound('Schedule not found');
         }

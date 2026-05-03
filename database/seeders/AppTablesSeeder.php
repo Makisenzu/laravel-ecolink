@@ -381,6 +381,7 @@ class AppTablesSeeder extends Seeder
 
         // Station and collection sites
         $stationId = DB::table('sites')->insertGetId([
+            'ulid' => (string) Str::ulid(),
             'purok_id' => $purokId,
             'site_name' => 'Barangay Station',
             'latitude' => 10.31569900,
@@ -392,6 +393,7 @@ class AppTablesSeeder extends Seeder
         ]);
 
         $site1Id = DB::table('sites')->insertGetId([
+            'ulid' => (string) Str::ulid(),
             'purok_id' => $purokId,
             'site_name' => 'Site 1',
             'latitude' => 10.31572900,
@@ -403,6 +405,7 @@ class AppTablesSeeder extends Seeder
         ]);
 
         $site2Id = DB::table('sites')->insertGetId([
+            'ulid' => (string) Str::ulid(),
             'purok_id' => $purokId,
             'site_name' => 'Site 2',
             'latitude' => 10.31574900,
@@ -414,6 +417,7 @@ class AppTablesSeeder extends Seeder
         ]);
 
         $site3Id = DB::table('sites')->insertGetId([
+            'ulid' => (string) Str::ulid(),
             'purok_id' => $purokId,
             'site_name' => 'Site 3',
             'latitude' => 10.31571900,
@@ -425,6 +429,7 @@ class AppTablesSeeder extends Seeder
         ]);
 
         $site4Id = DB::table('sites')->insertGetId([
+            'ulid' => (string) Str::ulid(),
             'purok_id' => $purokId,
             'site_name' => 'Site 4',
             'latitude' => 10.31570900,
@@ -436,6 +441,7 @@ class AppTablesSeeder extends Seeder
         ]);
 
         $site5Id = DB::table('sites')->insertGetId([
+            'ulid' => (string) Str::ulid(),
             'purok_id' => $purokId,
             'site_name' => 'Site 5',
             'latitude' => 10.31573900,

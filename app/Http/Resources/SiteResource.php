@@ -15,7 +15,7 @@ class SiteResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
+            'Site ULID' => $this->ulid,
             'purok_id' => $this->purok_id,
             'site_name' => $this->site_name,
             'latitude' => (float) $this->latitude,

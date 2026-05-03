@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('sites', function (Blueprint $table) {
             $table->id();
+            $table->ulid('ulid')->unique();
             $table->foreignId('purok_id')->constrained('puroks')->cascadeOnDelete();
             $table->string('site_name');
             $table->decimal('latitude', 10, 8);

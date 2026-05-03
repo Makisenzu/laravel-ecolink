@@ -26,9 +26,9 @@ class SiteController extends Controller
         return $this->success(SiteResource::collection($sites)->response()->getData(true));
     }
 
-    public function show(int $id): JsonResponse
+    public function show(Site $site): JsonResponse
     {
-        $site = $this->siteService->getSiteById($id);
+        $site = $this->siteService->getSiteById($site->id);
 
         if (! $site) {
             return $this->notFound('Site not found');

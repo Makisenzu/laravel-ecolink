@@ -35,9 +35,9 @@ class DriverController extends Controller
         return $this->success(DriverResource::collection($drivers)->response()->getData(true));
     }
 
-    public function show(int $id): JsonResponse
+    public function show(Driver $driver): JsonResponse
     {
-        $driver = $this->driverService->getDriverById($id);
+        $driver = $this->driverService->getDriverById($driver->id);
 
         if (! $driver) {
             return $this->notFound('Driver not found');
@@ -64,9 +64,9 @@ class DriverController extends Controller
         return $this->success(new DriverResource($driver), 'Driver status updated successfully');
     }
 
-    public function destroy(int $id): JsonResponse
+    public function destroy(Driver $driver): JsonResponse
     {
-        $deleted = $this->driverService->deleteDriver($id);
+        $deleted = $this->driverService->deleteDriver($driver->id);
 
         if (! $deleted) {
             return $this->notFound('Driver not found');

@@ -16,6 +16,7 @@ class DriverResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'ULID' => $this->ulid,
             'Firstname' => $this->user->firstname,
             'Middle Name' => $this->user->middlename,
             'Lastname' => $this->user->lastname,

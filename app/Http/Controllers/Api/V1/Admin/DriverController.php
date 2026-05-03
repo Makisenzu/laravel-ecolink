@@ -37,12 +37,7 @@ class DriverController extends Controller
 
     public function show(Driver $driver): JsonResponse
     {
-        $driver = $this->driverService->getDriverById($driver->id);
-
-        if (! $driver) {
-            return $this->notFound('Driver not found');
-        }
-
+        $driver->load('user', 'schedules');
         return $this->success(new DriverResource($driver));
     }
 

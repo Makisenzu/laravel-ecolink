@@ -60,4 +60,14 @@ class ScheduleRepository implements ScheduleRepositoryInterface
         }
         return false;
     }
+
+    public function updateScheduleStatus(int $id, string $status): bool
+    {
+        $schedule = Schedule::find($id);
+        if ($schedule) {
+            $schedule->update(['status' => $status]);
+            return true;
+        }
+        return false;
+    }
 }

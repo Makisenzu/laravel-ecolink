@@ -15,4 +15,5 @@ interface ScheduleRepositoryInterface
     public function createSchedule(array $data): Schedule;
     public function updateSchedule(int $id, array $data): ?Schedule;
     public function deleteSchedule(int $id): bool;
+    public function updateScheduleStatus(int $id, string $status): bool;
 }

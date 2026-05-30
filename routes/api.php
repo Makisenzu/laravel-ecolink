@@ -36,6 +36,10 @@ Route::middleware(['auth:sanctum', 'throttle:api'])->group(function (): void {
         Route::get('/schedules/{schedule}', [ScheduleController::class, 'show']);
     });
 
+    Route::middleware('permission:schedules.update')->group(function(): void {
+        Route::put('/schedules/{schedule}/status', [ScheduleController::class, 'updateScheduleStatus']);
+    });
+
     Route::post('/schedules/create', [ScheduleController::class, 'store'])->middleware('permission:schedules.create');
     Route::put('/schedules/{schedule}', [ScheduleController::class, 'update'])->middleware('permission:schedules.update');
     Route::delete('/schedules/{schedule}', [ScheduleController::class, 'destroy'])->middleware('permission:schedules.delete');

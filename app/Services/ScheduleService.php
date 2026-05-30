@@ -41,6 +41,11 @@ class ScheduleService
         return $this->scheduleRepository->findScheduleById($id);
     }
 
+    public function updateScheduleStatus(int $id, string $status)
+    {
+        return $this->scheduleRepository->updateScheduleStatus($id, $status);
+    }
+
     public function createSchedule(array $data)
     {
         return DB::transaction(function () use ($data) {
@@ -140,4 +145,5 @@ class ScheduleService
 
         return 2 * $earthRadiusKm * asin(min(1, sqrt($a)));
     }
+
 }

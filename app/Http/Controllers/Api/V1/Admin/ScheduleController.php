@@ -86,6 +86,18 @@ class ScheduleController extends Controller
         return $this->success(new ScheduleResource($schedule), 'Schedule updated successfully');
     }
 
+    public function updateScheduleStatus(UpdateScheduleRequest $request, Schedule $schedule): JsonResponse
+    {
+        $success = $this->scheduleService->updateScheduleStatus($schedule->id, $request->input('status'));
+        if (!$success) {
+
+            return $this->notFound('Schedule status could not be updated');
+        }
+
+        $updatedSchedule = $this->scheduleService->getScheduleById($schedule->id);
+        return $this->success(new ScheduleResource($updatedSchedule), 'Schedule status updated successfully');
+    }
+
     public function destroy(Schedule $schedule): JsonResponse
     {
         $deleted = $this->scheduleService->deleteSchedule($schedule->id);

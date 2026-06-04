@@ -25,8 +25,7 @@ class RedeemableRepository implements RedeemableRepositoryInterface {
     
     public function updateRedeemable(int $id, array $data): ?Redeemable{
         $redeemable = Redeemable::find($id);
-        $redeemable->fill($data);
-        $redeemable->save();
+        $redeemable->update($data);
         return $redeemable;
     }
 

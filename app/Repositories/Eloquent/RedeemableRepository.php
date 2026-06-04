@@ -22,6 +22,9 @@ class RedeemableRepository implements RedeemableRepositoryInterface {
     public function getRedeemableByPointRange(int $minPoint, int $maxPoint): LengthAwarePaginator{
         return Redeemable::whereBetween('points_required', [$minPoint, $maxPoint])->paginate(10);
     }
+    public function createRedeemable(array $data): Redeemable{
+        return Redeemable::create($data);
+    }
     
     public function updateRedeemable(int $id, array $data): ?Redeemable{
         $redeemable = Redeemable::find($id);

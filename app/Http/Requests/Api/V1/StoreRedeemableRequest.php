@@ -28,7 +28,7 @@ class StoreRedeemableRequest extends FormRequest
             'description' => 'required|string|max:255',
             'points_required' => 'required|integer|min:0',
             'stock' => 'required|integer|min:0',
-            'is_active' => 'required|boolean'
+            'status' => 'required|in:active,inactive'
         ];
     }
 }

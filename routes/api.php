@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\V1\Admin\CollectionQueueController;
 use App\Http\Controllers\Api\V1\Admin\DriverController;
 use App\Http\Controllers\Api\V1\Admin\ReviewController;
 use App\Http\Controllers\Api\V1\Admin\ScheduleController;
+use App\Http\Controllers\Api\V1\Admin\RedeemableController;
 use App\Http\Controllers\Api\V1\Admin\SiteController;
 use App\Http\Controllers\Api\V1\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -51,9 +52,20 @@ Route::middleware(['auth:sanctum', 'throttle:api'])->group(function (): void {
 
 
     //Review management
-    Route::get('/reviews', [ReviewController::class, 'index'])->middleware('permission:reviews.view');
+    Route::middleware('permission:reviews.view')->group(function (): void {
+        Route::get('/reviews', [ReviewController::class, 'index']);
+        Route::get('/reviews/{review}', [ReviewController::class, 'show']);
+    });
     Route::post('/reviews/create', [ReviewController::class, 'store'])->middleware('permission:reviews.create');
-    Route::get('/reviews/{review}', [ReviewController::class, 'show'])->middleware('permission:reviews.view');
     Route::put('/reviews/{review}', [ReviewController::class, 'update'])->middleware('permission:reviews.update');
     Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middleware('permission:reviews.delete');
+
+    //Redeemable management
+    Route::middleware('permission:redeemables.view')->group(function (): void {
+         Route::get('/redeemables', [RedeemableController::class, 'index']);
+         Route::get('/redeemables/{redeemable}', [RedeemableController::class, 'show']);
+    });
+    Route::post('/redeemables/create', [RedeemableController::class, 'store'])->middleware('permission:redeemables.create');
+    Route::put('/redeemables/{redeemable}', [RedeemableController::class, 'update'])->middleware('permission:redeemables.update');
+    Route::delete('/redeemables/{redeemable}', [RedeemableController::class, 'destroy'])->middleware('permission:redeemables.delete');
 });

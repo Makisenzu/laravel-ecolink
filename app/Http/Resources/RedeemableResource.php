@@ -15,7 +15,7 @@ class RedeemableResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'Category' =>$this->redeemable_category_id->category_name,
+            'Category' => $this->redeemableCategory->category_name,
             'Item Name' => $this->item_name,
             'Description' => $this->description,
             'Points Required' => $this->points_required,

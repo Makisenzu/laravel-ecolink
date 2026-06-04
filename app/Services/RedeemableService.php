@@ -28,6 +28,9 @@ class RedeemableService{
     public function getRedeemableByPointRange(int $minPoint, int $maxPoint){
         return $this->redeemableRepository->getRedeemableByPointRange($minPoint, $maxPoint);
     }
+    public function createRedeemable(array $data){
+        return $this->redeemableRepository->createRedeemable($data);
+    }
 
     public function updateRedeemable(int $id, array $data){
         return $this->redeemableRepository->updateRedeemable($id, $data);

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api\V1\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\V1\StoreRedeemableRequest;
+use App\Http\Requests\Api\V1\UpdateRedeemableRequest;
+use App\Http\Resources\RedeemableResource;
 use App\Services\RedeemableService;
 use App\Traits\ApiResponse;
 
